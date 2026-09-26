@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Aprena</title>
+<meta name="description" content="How Aprena handles data in its games and in Tokyn, its AI assistant.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   Design notes
+   - A privacy policy is a document people READ, so the page is built
+     like an editorial page, not a SaaS landing page: warm paper
+     background, a serif for headings, a plain sans for body text.
+   - Ink = the logo's own black. One accent (brick red) is used only
+     for section numbers, links and the "at a glance" rule, so it
+     always means "this is a navigation / structure cue".
+   - Layout is deliberately asymmetric: a narrow sticky index on the
+     left, a reading column capped at ~68ch on the right.
+   - No rounded corners anywhere: it's a legal document, it should
+     feel printed, not "app-like".
+   ------------------------------------------------------------------ */
+:root{
+  --paper:#f5f1ea;       /* warm off-white, not #fff */
+  --paper-2:#ece6db;     /* table stripes / panels */
+  --ink:#16140f;         /* matches the logo stroke */
+  --ink-2:#4a463e;       /* secondary text */
+  --rule:#d6cebf;
+  --accent:#a2381f;      /* brick */
+  --confirm-bg:#fff4c7;
+  --confirm-ink:#5a4600;
+  --logo-filter:none;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Instrument Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#15130f; --paper-2:#1f1c17; --ink:#efe9dd; --ink-2:#b3ab9c;
+    --rule:#37322a; --accent:#e0795c; --confirm-bg:#3b3212; --confirm-ink:#f3dd8a;
+    --logo-filter:invert(1);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15130f; --paper-2:#1f1c17; --ink:#efe9dd; --ink-2:#b3ab9c;
+  --rule:#37322a; --accent:#e0795c; --confirm-bg:#3b3212; --confirm-ink:#f3dd8a;
+  --logo-filter:invert(1);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.65 var(--sans)}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+
+/* ---------- top bar ---------- */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:18px clamp(16px,5vw,64px);border-bottom:1px solid var(--rule)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;
+  font:600 15px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase}
+.brand img{height:34px;width:auto;filter:var(--logo-filter)}
+.langs{display:flex;gap:2px;font:500 13px/1 var(--mono)}
+.langs button{all:unset;cursor:pointer;padding:8px 10px;color:var(--ink-2);border-bottom:2px solid transparent}
+.langs button:hover{color:var(--ink)}
+.langs button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.langs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(48px,9vw,112px) clamp(16px,5vw,64px) 40px;display:grid;
+  grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;max-width:1240px;margin:0 auto}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 20px}
+h1{font:500 clamp(44px,8vw,88px)/.95 var(--serif);letter-spacing:-.025em;margin:0}
+.meta{margin:24px 0 0;color:var(--ink-2);font-size:15px}
+.hero-mark{width:clamp(96px,16vw,180px);height:auto;filter:var(--logo-filter);opacity:.9}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,5vw,64px) 96px;
+  display:grid;grid-template-columns:220px minmax(0,1fr);gap:clamp(32px,6vw,96px)}
+nav.toc{position:sticky;top:24px;align-self:start;font-size:14px;padding-top:8px;max-height:calc(100vh - 48px);overflow:auto}
+nav.toc p{font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin:0 0 14px}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc a{display:grid;grid-template-columns:28px 1fr;padding:6px 0;color:var(--ink-2);text-decoration:none;line-height:1.3}
+nav.toc a span{font:400 12px/1.3 var(--mono);color:var(--rule)}
+nav.toc a:hover,nav.toc a.on{color:var(--ink)}
+nav.toc a.on span{color:var(--accent)}
+
+article{max-width:68ch}
+.lang{display:none}
+.lang.active{display:block}
+html:not(.js) .lang[data-lang="en"]{display:block}
+html:not(.js) nav.toc{display:none}
+
+/* at a glance: the one place with a heavy accent rule */
+.glance{border-left:4px solid var(--accent);padding:4px 0 4px 24px;margin:0 0 64px}
+.glance h2{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 16px;border:0;padding:0}
+.glance ul{margin:0;padding:0;list-style:none}
+.glance li{padding:8px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.glance li:last-child{border-bottom:0}
+.glance b{font-weight:600}
+
+section{margin:0 0 56px;scroll-margin-top:24px}
+h2{font:500 clamp(26px,3.4vw,34px)/1.15 var(--serif);letter-spacing:-.01em;margin:0 0 18px;
+  padding-top:28px;border-top:1px solid var(--rule);display:flex;gap:14px;align-items:baseline}
+h2 .n{font:500 13px/1 var(--mono);color:var(--accent);flex:none}
+h3{font:600 16px/1.3 var(--sans);margin:28px 0 8px}
+p{margin:0 0 14px}
+ul{padding-left:20px;margin:0 0 14px}
+li{margin:4px 0}
+li::marker{color:var(--ink-2)}
+
+/* tables: plain, printed-looking, scroll on phones instead of breaking the page */
+.tbl{overflow-x:auto;margin:8px 0 18px;border-top:2px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:520px}
+th,td{text-align:left;vertical-align:top;padding:10px 14px 10px 0;border-bottom:1px solid var(--rule)}
+th{font:500 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+td:first-child{font-weight:600;white-space:nowrap}
+
+/* NEEDS CONFIRMATION notes — loud on purpose so none get published by accident */
+.confirm{background:var(--confirm-bg);color:var(--confirm-ink);padding:12px 16px;margin:12px 0 18px;
+  font-size:14.5px;border-left:3px dashed currentColor}
+.confirm::before{content:"NEEDS CONFIRMATION — remove before publishing";display:block;
+  font:500 11px/1.4 var(--mono);letter-spacing:.08em;margin-bottom:4px}
+
+.note{font-size:14px;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:16px;margin-top:40px}
+footer{border-top:1px solid var(--rule);padding:28px clamp(16px,5vw,64px);display:flex;gap:16px;
+  justify-content:space-between;flex-wrap:wrap;color:var(--ink-2);font-size:14px}
+footer img{height:22px;filter:var(--logo-filter);vertical-align:middle;margin-right:8px}
+
+@media (max-width:860px){
+  .wrap{grid-template-columns:minmax(0,1fr)}
+  h1{overflow-wrap:anywhere;hyphens:auto}
+  nav.toc{position:static;max-height:none;border-bottom:1px solid var(--rule);padding-bottom:16px}
+  nav.toc ol{columns:2;column-gap:24px}
+  .hero{grid-template-columns:1fr}
+  .hero-mark{display:none}
+}
+@media (max-width:480px){ nav.toc ol{columns:1} body{font-size:16px} }
+@media print{
+  .bar .langs,nav.toc,.hero-mark{display:none}
+  .wrap{display:block}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="brand" href="#top" id="top"><img src="logo.png" alt="Aprena logo">Aprena</a>
+  <div class="langs" role="group" aria-label="Language">
+    <button type="button" data-set="en" aria-pressed="true">EN</button>
+    <button type="button" data-set="de" aria-pressed="false">DE</button>
+    <button type="button" data-set="es" aria-pressed="false">ES</button>
+    <button type="button" data-set="fr" aria-pressed="false">FR</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div>
+    <p class="kicker" data-i18n="kicker">Legal</p>
+    <h1 data-i18n="title">Privacy Policy</h1>
+    <p class="meta" data-i18n="meta">Last updated 26 September 2026 · Applies to Aprena games and Tokyn</p>
+  </div>
+  <img class="hero-mark" src="logo.png" alt="" aria-hidden="true">
+</div>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contents"><p data-i18n="contents">Contents</p><ol id="toc"></ol></nav>
+
+  <article>
+
+<!-- =============================== ENGLISH =============================== -->
+<div class="lang" data-lang="en" lang="en">
+
+<div class="glance">
+  <h2>At a glance</h2>
+  <ul>
+    <li><b>We do collect data.</b> Our games need a player ID, display name and game progress to work online.</li>
+    <li><b>We never sell personal data.</b></li>
+    <li><b>We use a few service providers:</b> Supabase (servers in Germany), Epic Online Services and, on Quest, Meta.</li>
+    <li><b>Tokyn does not train on your conversations</b> unless you turn that on yourself.</li>
+    <li><b>You can ask us</b> to see, correct or delete your data at any time.</li>
+  </ul>
+</div>
+
+<section id="en-who"><h2><span class="n">01</span>Who we are</h2>
+<p>Aprena develops video games and Tokyn, an AI assistant. In this policy, "Aprena", "we" and "us" mean the company responsible for these products. We are the controller of the personal data described here.</p>
+<p>Contact: <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a></p>
+<div class="confirm">Add Aprena's legal name (or the responsible person's name) and a postal address. EU law (GDPR Art. 13) requires the controller's identity and contact details in the policy.</div>
+</section>
+
+<section id="en-scope"><h2><span class="n">02</span>What this policy covers</h2>
+<p>This policy applies to games published by Aprena and to Tokyn. A game may have its own short privacy notice with extra details specific to that game. If it does, that notice adds to this policy and doesn't replace it.</p>
+<p>Some platforms we use, such as Meta Horizon and Epic Games, have their own privacy policies. Those policies apply to the data those companies handle themselves.</p>
+</section>
+
+<section id="en-data"><h2><span class="n">03</span>What data we process</h2>
+<div class="tbl"><table>
+<thead><tr><th>Type</th><th>Examples</th><th>Where it lives</th></tr></thead>
+<tbody>
+<tr><td>Authentication identifiers</td><td>Epic Online Services product user ID; Meta user ID on Quest; a device-linked login created by Epic on PC</td><td>Epic; Meta; our backend (player ID)</td></tr>
+<tr><td>Account &amp; gameplay</td><td>Display name, role (player/moderator/admin), in-game currency balances and changes, owned and equipped cosmetics, statistics and leaderboard scores, game settings you save to your account</td><td>Our backend (Supabase)</td></tr>
+<tr><td>Social</td><td>Friend lists and friend requests, whether a friend was recently online</td><td>Our backend (Supabase)</td></tr>
+<tr><td>Moderation</td><td>Reports you submit or that are submitted about you (player IDs, reason, details you type), ban status, reason and expiry</td><td>Our backend (Supabase); Epic (sanctions)</td></tr>
+<tr><td>Analytics</td><td>Gameplay events a game records, e.g. "round completed" with the map name and duration</td><td>Our backend (Supabase)</td></tr>
+<tr><td>Backups</td><td>A copy of your balances, cosmetics, equipped items and the time of the backup</td><td>Epic cloud storage (encrypted)</td></tr>
+<tr><td>On your device</td><td>Cached copies of the above plus local settings</td><td>Your device only (see section 09)</td></tr>
+<tr><td>Technical</td><td>IP address and request metadata, which every internet connection sends</td><td>Our providers' systems</td></tr>
+<tr><td>Tokyn</td><td>Prompts, conversations, files you share</td><td>Aprena (see section 06)</td></tr>
+</tbody></table></div>
+<p>We collect only what a feature needs. We don't ask for your real name, email, location or payment details in our games.</p>
+</section>
+
+<section id="en-use"><h2><span class="n">04</span>How we use data and why</h2>
+<div class="tbl"><table>
+<thead><tr><th>Purpose</th><th>Legal basis (GDPR)</th></tr></thead>
+<tbody>
+<tr><td>Logging you in, online play, saving and restoring progress, cosmetics, currency, friends, leaderboards</td><td>Performance of a contract: providing the game you chose to play</td></tr>
+<tr><td>Moderation, handling reports, enforcing bans, preventing cheating and fraud</td><td>Legitimate interest in keeping players safe and the game fair</td></tr>
+<tr><td>Gameplay analytics to fix bugs and improve our games</td><td>Legitimate interest</td></tr>
+<tr><td>Tokyn: answering your requests</td><td>Performance of a contract</td></tr>
+<tr><td>Tokyn: training our models on your conversations</td><td>Your consent. This is off by default and you can withdraw consent at any time.</td></tr>
+<tr><td>Meeting legal obligations</td><td>Legal obligation</td></tr>
+</tbody></table></div>
+<p><b>We do not sell personal data</b> and we don't use it for advertising.</p>
+</section>
+
+<section id="en-games"><h2><span class="n">05</span>Game data in detail</h2>
+<h3>What other players can see</h3>
+<p>Your display name, appearance (colour and cosmetics) and presence in a room are visible to other players. Leaderboards show your display name and score. Any player data you mark as public can be read by other players.</p>
+<h3>Peer-to-peer connections</h3>
+<p>Multiplayer sessions run over Epic Online Services. Where possible, players connect directly to each other, which means other players' devices can see your IP address. If a direct connection isn't possible, traffic goes through Epic's relay servers.</p>
+<h3>Voice chat</h3>
+<p>Where a game offers voice chat, it uses your microphone only with your permission. Your voice is sent live to other players in your session. You can turn the permission off in your device settings.</p>
+<div class="confirm">Confirm which service carries voice chat, and that voice is not recorded or stored by Aprena or that service.</div>
+<h3>Moderation and bans</h3>
+<p>Reports go to our moderation dashboard. Moderators can apply bans, which may be temporary, and can adjust in-game currency or cosmetics, for example to correct an error or remove items obtained through an exploit. We also check Epic's sanctions system for account bans.</p>
+</section>
+
+<section id="en-tokyn"><h2><span class="n">06</span>Tokyn</h2>
+<p><b>Status:</b> Tokyn is in development and not yet publicly available. This section describes how it will handle data at launch. We will update this policy before any public release.</p>
+<h3>What Tokyn processes</h3>
+<p>Depending on the features available, this includes the prompts you write, your conversation history and files you share with it. Please don't share sensitive personal information you don't need to.</p>
+<h3>Model training is off by default</h3>
+<p>New accounts are opted out. Your conversations are used to train or improve our models only if you turn this on, and you can turn it off again at any time. Turning it off stops future use. It doesn't undo training that already happened.</p>
+<h3>Retention and human review</h3>
+<ul>
+<li>Your conversation history stays in your account until you delete it.</li>
+<li>If you've opted in to training, conversation data used for training is kept for up to 7 days.</li>
+<li>If a conversation needs review by our team, for example for safety or quality, the reviewed data is kept for up to 1 day.</li>
+</ul>
+<div class="confirm">Check that this matches how you intend it: history is kept until deleted, training copies for 7 days, human-review copies for 1 day. Also confirm where Tokyn will be hosted at launch (planned: US, Virginia). If it's outside the EU, section 08 needs to mention that transfer.</div>
+</section>
+
+<section id="en-meta"><h2><span class="n">07</span>Meta Quest &amp; device data</h2>
+<p>When you play on Meta Quest, the game uses the Meta Platform SDK to:</p>
+<ul>
+<li>check that your account owns the game (entitlement check);</li>
+<li>get your Meta user ID and a one-time proof token. These are passed to Epic Online Services to log you in;</li>
+<li>use your Meta username as your default display name, which you can change in-game.</li>
+</ul>
+<p>We don't request other Meta account data such as your friends list, email or location. On PC, Epic creates a device-linked login so you can play without creating an account. That credential is managed by Epic.</p>
+<p>Meta's handling of data on its own platform is covered by <a href="https://www.meta.com/legal/quest/privacy-policy/" rel="noopener">Meta's privacy policy</a>.</p>
+</section>
+
+<section id="en-providers"><h2><span class="n">08</span>Service providers</h2>
+<div class="tbl"><table>
+<thead><tr><th>Provider</th><th>What they do for us</th><th>Location</th></tr></thead>
+<tbody>
+<tr><td>Supabase</td><td>Database and backend for accounts, progress, currency, cosmetics, friends, stats, reports and analytics</td><td>Germany (EU)</td></tr>
+<tr><td>Epic Online Services</td><td>Login, multiplayer lobbies and connections, ban checks, encrypted cloud backups</td><td>Epic Games, Inc. (USA)</td></tr>
+<tr><td>Meta Platforms</td><td>Login and entitlement check on Quest</td><td>Meta Platforms (USA/Ireland)</td></tr>
+</tbody></table></div>
+<p>These providers process data to run our services. Some are based outside the EU. Where data is transferred outside the EU, it's protected by the safeguards the provider offers, such as the EU-US Data Privacy Framework or Standard Contractual Clauses. <a href="https://supabase.com/privacy" rel="noopener">Supabase</a> and <a href="https://www.epicgames.com/site/privacypolicy" rel="noopener">Epic Games</a> publish their own policies.</p>
+</section>
+
+<section id="en-local"><h2><span class="n">09</span>Data stored on your device</h2>
+<p>Games store some data locally (Unity PlayerPrefs) so they start quickly and keep working offline. This includes your display name, colour, game mode, cached balances and cosmetics, equipped items, your role and ban status. Some of this is a copy of your account data. Uninstalling the game or clearing its data removes the local copy. It doesn't delete your online account.</p>
+</section>
+
+<section id="en-retention"><h2><span class="n">10</span>How long we keep data</h2>
+<div class="tbl"><table>
+<thead><tr><th>Data</th><th>Kept for</th></tr></thead>
+<tbody>
+<tr><td>Player ID, display name</td><td>As long as your account exists</td></tr>
+<tr><td>Currency, cosmetics, stats, friends</td><td>As long as your account exists</td></tr>
+<tr><td>Cloud backups</td><td>Until your account is deleted</td></tr>
+<tr><td>Analytics events</td><td>1 month</td></tr>
+<tr><td>Player reports</td><td>5 months</td></tr>
+<tr><td>Tokyn conversations</td><td>Until you delete them (see section 06)</td></tr>
+</tbody></table></div>
+<p>We may keep data longer only where the law requires it.</p>
+</section>
+
+<section id="en-security"><h2><span class="n">11</span>Security</h2>
+<ul>
+<li>Connections to our backend use HTTPS encryption.</li>
+<li>Multiplayer traffic is encrypted by Epic Online Services.</li>
+<li>Cloud backups stored with Epic are encrypted with a 256-bit key.</li>
+<li>Purchases and currency changes are checked on the server, so a modified game client can't change balances.</li>
+<li>Privileged server keys are never included in player versions of our games.</li>
+</ul>
+<p>No system is perfectly secure. If a breach affects your data, we will tell you and the authorities as the law requires.</p>
+</section>
+
+<section id="en-rights"><h2><span class="n">12</span>Your rights</h2>
+<p>You have the right to:</p>
+<ul>
+<li>access the data we hold about you and get a copy;</li>
+<li>correct inaccurate data;</li>
+<li>delete your data and account;</li>
+<li>restrict or object to processing based on legitimate interest;</li>
+<li>data portability;</li>
+<li>withdraw consent at any time, e.g. for Tokyn training.</li>
+</ul>
+<p>Email <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a> and include your in-game player ID if you can. We'll reply within one month. We apply these rights to everyone, wherever you live. You can also complain to your local data protection authority.</p>
+</section>
+
+<section id="en-children"><h2><span class="n">13</span>Children</h2>
+<p>Our games are for players aged 13 and over. Tokyn is for users aged 16 and over. Individual products may set a higher age. We don't knowingly collect data from children under these ages. If you believe a child has given us data, contact us and we'll delete it.</p>
+</section>
+
+<section id="en-changes"><h2><span class="n">14</span>Changes to this policy</h2>
+<p>When we change this policy, we'll update the date at the top. For significant changes we'll also give notice in the affected game or product.</p>
+</section>
+
+<section id="en-contact"><h2><span class="n">15</span>Contact</h2>
+<p><a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a></p>
+<p class="note">Translations are provided for convenience. If a translation differs from the English version, the English version applies.</p>
+</section>
+</div>
+
+<!-- =============================== DEUTSCH =============================== -->
+<div class="lang" data-lang="de" lang="de">
+
+<div class="glance">
+  <h2>Auf einen Blick</h2>
+  <ul>
+    <li><b>Wir erheben Daten.</b> Unsere Spiele brauchen eine Spieler-ID, einen Anzeigenamen und den Spielfortschritt, um online zu funktionieren.</li>
+    <li><b>Wir verkaufen niemals personenbezogene Daten.</b></li>
+    <li><b>Wir nutzen wenige Dienstleister:</b> Supabase (Server in Deutschland), Epic Online Services und auf Quest Meta.</li>
+    <li><b>Tokyn trainiert nicht mit deinen Unterhaltungen,</b> außer du schaltest das selbst ein.</li>
+    <li><b>Du kannst jederzeit</b> Auskunft, Berichtigung oder Löschung deiner Daten verlangen.</li>
+  </ul>
+</div>
+
+<section id="de-who"><h2><span class="n">01</span>Wer wir sind</h2>
+<p>Aprena entwickelt Videospiele und Tokyn, einen KI-Assistenten. „Aprena“, „wir“ und „uns“ bezeichnen in dieser Erklärung das für diese Produkte verantwortliche Unternehmen. Wir sind Verantwortlicher im Sinne der DSGVO für die hier beschriebenen Daten.</p>
+<p>Kontakt: <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a></p>
+<div class="confirm">Add legal name and postal address (GDPR Art. 13).</div>
+</section>
+
+<section id="de-scope"><h2><span class="n">02</span>Geltungsbereich</h2>
+<p>Diese Erklärung gilt für von Aprena veröffentlichte Spiele und für Tokyn. Ein Spiel kann einen eigenen kurzen Datenschutzhinweis mit zusätzlichen spielspezifischen Angaben haben. Dieser ergänzt die vorliegende Erklärung, ersetzt sie aber nicht.</p>
+<p>Plattformen wie Meta Horizon und Epic Games haben eigene Datenschutzerklärungen für die Daten, die sie selbst verarbeiten.</p>
+</section>
+
+<section id="de-data"><h2><span class="n">03</span>Welche Daten wir verarbeiten</h2>
+<div class="tbl"><table>
+<thead><tr><th>Art</th><th>Beispiele</th><th>Speicherort</th></tr></thead>
+<tbody>
+<tr><td>Anmeldekennungen</td><td>Epic-Online-Services-Nutzer-ID; Meta-Nutzer-ID auf Quest; eine von Epic erstellte gerätegebundene Anmeldung am PC</td><td>Epic; Meta; unser Backend (Spieler-ID)</td></tr>
+<tr><td>Konto &amp; Spiel</td><td>Anzeigename, Rolle (Spieler/Moderator/Admin), Guthaben und Änderungen der Spielwährung, besessene und ausgerüstete Kosmetik, Statistiken und Bestenlisten, in deinem Konto gespeicherte Einstellungen</td><td>Unser Backend (Supabase)</td></tr>
+<tr><td>Soziales</td><td>Freundeslisten und -anfragen, ob ein Freund kürzlich online war</td><td>Unser Backend (Supabase)</td></tr>
+<tr><td>Moderation</td><td>Meldungen von dir oder über dich (Spieler-IDs, Grund, eingegebene Details), Sperrstatus, Grund und Ablauf</td><td>Unser Backend (Supabase); Epic (Sanktionen)</td></tr>
+<tr><td>Analyse</td><td>Spielereignisse, z. B. „Runde beendet“ mit Karte und Dauer</td><td>Unser Backend (Supabase)</td></tr>
+<tr><td>Sicherungen</td><td>Kopie von Guthaben, Kosmetik, ausgerüsteten Gegenständen und Zeitpunkt der Sicherung</td><td>Epic-Cloudspeicher (verschlüsselt)</td></tr>
+<tr><td>Auf deinem Gerät</td><td>Zwischengespeicherte Kopien der obigen Daten und lokale Einstellungen</td><td>Nur dein Gerät (siehe Abschnitt 09)</td></tr>
+<tr><td>Technisch</td><td>IP-Adresse und Verbindungsmetadaten, die jede Internetverbindung überträgt</td><td>Systeme unserer Dienstleister</td></tr>
+<tr><td>Tokyn</td><td>Eingaben, Unterhaltungen, geteilte Dateien</td><td>Aprena (siehe Abschnitt 06)</td></tr>
+</tbody></table></div>
+<p>Wir erheben nur, was eine Funktion braucht. In unseren Spielen fragen wir weder nach deinem echten Namen noch nach E-Mail, Standort oder Zahlungsdaten.</p>
+</section>
+
+<section id="de-use"><h2><span class="n">04</span>Zwecke und Rechtsgrundlagen</h2>
+<div class="tbl"><table>
+<thead><tr><th>Zweck</th><th>Rechtsgrundlage (DSGVO)</th></tr></thead>
+<tbody>
+<tr><td>Anmeldung, Online-Spiel, Speichern und Wiederherstellen des Fortschritts, Kosmetik, Währung, Freunde, Bestenlisten</td><td>Vertragserfüllung, Art. 6 Abs. 1 lit. b</td></tr>
+<tr><td>Moderation, Meldungen, Sperren, Schutz vor Cheats und Betrug</td><td>Berechtigtes Interesse, Art. 6 Abs. 1 lit. f</td></tr>
+<tr><td>Spielanalysen zur Fehlerbehebung und Verbesserung</td><td>Berechtigtes Interesse, Art. 6 Abs. 1 lit. f</td></tr>
+<tr><td>Tokyn: Beantwortung deiner Anfragen</td><td>Vertragserfüllung, Art. 6 Abs. 1 lit. b</td></tr>
+<tr><td>Tokyn: Training unserer Modelle mit deinen Unterhaltungen</td><td>Einwilligung, Art. 6 Abs. 1 lit. a. Standardmäßig aus und jederzeit widerrufbar.</td></tr>
+<tr><td>Erfüllung gesetzlicher Pflichten</td><td>Art. 6 Abs. 1 lit. c</td></tr>
+</tbody></table></div>
+<p><b>Wir verkaufen keine personenbezogenen Daten</b> und nutzen sie nicht für Werbung.</p>
+</section>
+
+<section id="de-games"><h2><span class="n">05</span>Spieldaten im Detail</h2>
+<h3>Was andere Spieler sehen</h3>
+<p>Andere Spieler sehen deinen Anzeigenamen, dein Aussehen (Farbe und Kosmetik) und deine Anwesenheit in einem Raum. Bestenlisten zeigen deinen Anzeigenamen und deine Punktzahl. Als öffentlich markierte Spielerdaten können andere Spieler lesen.</p>
+<h3>Peer-to-Peer-Verbindungen</h3>
+<p>Mehrspielersitzungen laufen über Epic Online Services. Wenn möglich, verbinden sich Spieler direkt miteinander. Dabei können die Geräte anderer Spieler deine IP-Adresse sehen. Ist keine direkte Verbindung möglich, läuft der Verkehr über Relay-Server von Epic.</p>
+<h3>Sprachchat</h3>
+<p>Bietet ein Spiel Sprachchat an, nutzt es dein Mikrofon nur mit deiner Erlaubnis. Deine Stimme wird live an andere Spieler deiner Sitzung übertragen. Die Berechtigung kannst du in den Geräteeinstellungen entziehen.</p>
+<h3>Moderation und Sperren</h3>
+<p>Meldungen landen in unserem Moderations-Dashboard. Moderatoren können Sperren verhängen, auch zeitlich begrenzt. Sie können außerdem Spielwährung oder Kosmetik anpassen, etwa um Fehler zu korrigieren oder durch Exploits erlangte Gegenstände zu entfernen. Zusätzlich prüfen wir Kontosperren im Sanktionssystem von Epic.</p>
+</section>
+
+<section id="de-tokyn"><h2><span class="n">06</span>Tokyn</h2>
+<p><b>Status:</b> Tokyn ist in Entwicklung und noch nicht öffentlich verfügbar. Dieser Abschnitt beschreibt den Umgang mit Daten zum Start. Vor einer Veröffentlichung aktualisieren wir diese Erklärung.</p>
+<h3>Was Tokyn verarbeitet</h3>
+<p>Je nach verfügbaren Funktionen deine Eingaben, deinen Gesprächsverlauf und Dateien, die du teilst. Bitte teile keine sensiblen persönlichen Informationen, die nicht nötig sind.</p>
+<h3>Modelltraining ist standardmäßig aus</h3>
+<p>Neue Konten sind abgemeldet. Deine Unterhaltungen werden nur zum Training oder zur Verbesserung unserer Modelle genutzt, wenn du das einschaltest. Du kannst es jederzeit wieder ausschalten. Das beendet die künftige Nutzung, macht bereits erfolgtes Training aber nicht rückgängig.</p>
+<h3>Speicherdauer und menschliche Prüfung</h3>
+<ul>
+<li>Dein Gesprächsverlauf bleibt in deinem Konto, bis du ihn löschst.</li>
+<li>Hast du dem Training zugestimmt, werden dafür genutzte Gesprächsdaten bis zu 7 Tage gespeichert.</li>
+<li>Muss unser Team eine Unterhaltung prüfen, z. B. aus Sicherheits- oder Qualitätsgründen, werden die geprüften Daten bis zu 1 Tag gespeichert.</li>
+</ul>
+</section>
+
+<section id="de-meta"><h2><span class="n">07</span>Meta Quest &amp; Gerätedaten</h2>
+<p>Auf Meta Quest nutzt das Spiel das Meta Platform SDK, um:</p>
+<ul>
+<li>zu prüfen, ob dein Konto das Spiel besitzt (Berechtigungsprüfung);</li>
+<li>deine Meta-Nutzer-ID und ein einmaliges Nachweis-Token abzurufen, die zur Anmeldung an Epic Online Services übergeben werden;</li>
+<li>deinen Meta-Benutzernamen als Standard-Anzeigenamen zu verwenden. Du kannst ihn im Spiel ändern.</li>
+</ul>
+<p>Weitere Meta-Kontodaten wie Freundesliste, E-Mail oder Standort fragen wir nicht ab. Am PC erstellt Epic eine gerätegebundene Anmeldung, damit du ohne Konto spielen kannst. Diese verwaltet Epic.</p>
+<p>Für Metas eigene Datenverarbeitung gilt die <a href="https://www.meta.com/legal/quest/privacy-policy/" rel="noopener">Datenschutzrichtlinie von Meta</a>.</p>
+</section>
+
+<section id="de-providers"><h2><span class="n">08</span>Dienstleister</h2>
+<div class="tbl"><table>
+<thead><tr><th>Anbieter</th><th>Aufgabe</th><th>Standort</th></tr></thead>
+<tbody>
+<tr><td>Supabase</td><td>Datenbank und Backend für Konten, Fortschritt, Währung, Kosmetik, Freunde, Statistiken, Meldungen und Analysen</td><td>Deutschland (EU)</td></tr>
+<tr><td>Epic Online Services</td><td>Anmeldung, Mehrspieler-Lobbys und -Verbindungen, Sperrprüfung, verschlüsselte Cloud-Sicherungen</td><td>Epic Games, Inc. (USA)</td></tr>
+<tr><td>Meta Platforms</td><td>Anmeldung und Berechtigungsprüfung auf Quest</td><td>Meta Platforms (USA/Irland)</td></tr>
+</tbody></table></div>
+<p>Diese Anbieter verarbeiten Daten, um unsere Dienste zu betreiben. Einige sitzen außerhalb der EU. Übermittlungen in Drittländer sind durch die Garantien der Anbieter abgesichert, etwa das EU-US Data Privacy Framework oder Standardvertragsklauseln.</p>
+</section>
+
+<section id="de-local"><h2><span class="n">09</span>Auf deinem Gerät gespeicherte Daten</h2>
+<p>Spiele speichern manche Daten lokal (Unity PlayerPrefs), damit sie schnell starten und offline funktionieren. Dazu gehören Anzeigename, Farbe, Spielmodus, zwischengespeicherte Guthaben und Kosmetik, ausgerüstete Gegenstände, Rolle und Sperrstatus. Deinstallieren oder Löschen der App-Daten entfernt die lokale Kopie, nicht aber dein Online-Konto.</p>
+</section>
+
+<section id="de-retention"><h2><span class="n">10</span>Speicherdauer</h2>
+<div class="tbl"><table>
+<thead><tr><th>Daten</th><th>Speicherdauer</th></tr></thead>
+<tbody>
+<tr><td>Spieler-ID, Anzeigename</td><td>Solange dein Konto besteht</td></tr>
+<tr><td>Währung, Kosmetik, Statistiken, Freunde</td><td>Solange dein Konto besteht</td></tr>
+<tr><td>Cloud-Sicherungen</td><td>Bis zur Kontolöschung</td></tr>
+<tr><td>Analyseereignisse</td><td>1 Monat</td></tr>
+<tr><td>Spielermeldungen</td><td>5 Monate</td></tr>
+<tr><td>Tokyn-Unterhaltungen</td><td>Bis du sie löschst (siehe Abschnitt 06)</td></tr>
+</tbody></table></div>
+<p>Länger speichern wir nur, wenn das Gesetz es verlangt.</p>
+</section>
+
+<section id="de-security"><h2><span class="n">11</span>Sicherheit</h2>
+<ul>
+<li>Verbindungen zu unserem Backend sind per HTTPS verschlüsselt.</li>
+<li>Mehrspielerverkehr wird von Epic Online Services verschlüsselt.</li>
+<li>Cloud-Sicherungen bei Epic werden mit einem 256-Bit-Schlüssel verschlüsselt.</li>
+<li>Käufe und Währungsänderungen werden serverseitig geprüft. Ein manipulierter Client kann Guthaben nicht verändern.</li>
+<li>Privilegierte Serverschlüssel sind nie in Spielerversionen unserer Spiele enthalten.</li>
+</ul>
+<p>Kein System ist vollkommen sicher. Bei einer Datenpanne informieren wir dich und die Behörden wie gesetzlich vorgeschrieben.</p>
+</section>
+
+<section id="de-rights"><h2><span class="n">12</span>Deine Rechte</h2>
+<p>Du hast das Recht auf:</p>
+<ul>
+<li>Auskunft und Kopie deiner Daten;</li>
+<li>Berichtigung unrichtiger Daten;</li>
+<li>Löschung deiner Daten und deines Kontos;</li>
+<li>Einschränkung der Verarbeitung sowie Widerspruch gegen Verarbeitung auf Grundlage berechtigter Interessen;</li>
+<li>Datenübertragbarkeit;</li>
+<li>jederzeitigen Widerruf einer Einwilligung, z. B. für das Tokyn-Training.</li>
+</ul>
+<p>Schreib an <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a>, möglichst mit deiner Spieler-ID. Wir antworten innerhalb eines Monats. Du kannst dich außerdem bei einer Datenschutzaufsichtsbehörde beschweren.</p>
+</section>
+
+<section id="de-children"><h2><span class="n">13</span>Kinder</h2>
+<p>Unsere Spiele sind für Spieler ab 13 Jahren, Tokyn ist ab 16 Jahren. Einzelne Produkte können ein höheres Mindestalter haben. Wir erheben wissentlich keine Daten von jüngeren Kindern. Wenn du glaubst, dass ein Kind uns Daten gegeben hat, melde dich und wir löschen sie.</p>
+</section>
+
+<section id="de-changes"><h2><span class="n">14</span>Änderungen</h2>
+<p>Bei Änderungen aktualisieren wir das Datum oben. Über wesentliche Änderungen informieren wir zusätzlich im betroffenen Spiel oder Produkt.</p>
+</section>
+
+<section id="de-contact"><h2><span class="n">15</span>Kontakt</h2>
+<p><a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a></p>
+<p class="note">Übersetzungen dienen der Verständlichkeit. Bei Abweichungen gilt die englische Fassung.</p>
+</section>
+</div>
+
+<!-- =============================== ESPAÑOL =============================== -->
+<div class="lang" data-lang="es" lang="es">
+
+<div class="glance">
+  <h2>En resumen</h2>
+  <ul>
+    <li><b>Sí recopilamos datos.</b> Nuestros juegos necesitan un ID de jugador, un nombre visible y tu progreso para funcionar en línea.</li>
+    <li><b>Nunca vendemos datos personales.</b></li>
+    <li><b>Usamos pocos proveedores:</b> Supabase (servidores en Alemania), Epic Online Services y, en Quest, Meta.</li>
+    <li><b>Tokyn no se entrena con tus conversaciones</b> salvo que tú lo actives.</li>
+    <li><b>Puedes pedirnos</b> ver, corregir o eliminar tus datos en cualquier momento.</li>
+  </ul>
+</div>
+
+<section id="es-who"><h2><span class="n">01</span>Quiénes somos</h2>
+<p>Aprena desarrolla videojuegos y Tokyn, un asistente de IA. En esta política, «Aprena» y «nosotros» se refieren a la empresa responsable de estos productos. Somos el responsable del tratamiento de los datos descritos aquí.</p>
+<p>Contacto: <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a></p>
+<div class="confirm">Add legal name and postal address (GDPR Art. 13).</div>
+</section>
+
+<section id="es-scope"><h2><span class="n">02</span>Qué cubre esta política</h2>
+<p>Esta política se aplica a los juegos publicados por Aprena y a Tokyn. Un juego puede tener un breve aviso de privacidad propio con información adicional. Ese aviso complementa esta política, pero no la sustituye. Plataformas como Meta Horizon y Epic Games tienen sus propias políticas para los datos que ellas mismas tratan.</p>
+</section>
+
+<section id="es-data"><h2><span class="n">03</span>Qué datos tratamos</h2>
+<div class="tbl"><table>
+<thead><tr><th>Tipo</th><th>Ejemplos</th><th>Dónde se guarda</th></tr></thead>
+<tbody>
+<tr><td>Identificadores de acceso</td><td>ID de usuario de Epic Online Services; ID de usuario de Meta en Quest; un acceso vinculado al dispositivo creado por Epic en PC</td><td>Epic; Meta; nuestro backend (ID de jugador)</td></tr>
+<tr><td>Cuenta y juego</td><td>Nombre visible, rol (jugador/moderador/admin), saldos y cambios de moneda del juego, cosméticos obtenidos y equipados, estadísticas y clasificaciones, ajustes guardados en tu cuenta</td><td>Nuestro backend (Supabase)</td></tr>
+<tr><td>Social</td><td>Listas y solicitudes de amistad, si un amigo estuvo conectado recientemente</td><td>Nuestro backend (Supabase)</td></tr>
+<tr><td>Moderación</td><td>Denuncias que envías o que se envían sobre ti (IDs, motivo, detalles escritos), estado, motivo y duración de sanciones</td><td>Nuestro backend (Supabase); Epic (sanciones)</td></tr>
+<tr><td>Analítica</td><td>Eventos de juego, p. ej. «ronda completada» con mapa y duración</td><td>Nuestro backend (Supabase)</td></tr>
+<tr><td>Copias de seguridad</td><td>Copia de saldos, cosméticos, objetos equipados y la fecha de la copia</td><td>Almacenamiento en la nube de Epic (cifrado)</td></tr>
+<tr><td>En tu dispositivo</td><td>Copias en caché de lo anterior y ajustes locales</td><td>Solo tu dispositivo (ver sección 09)</td></tr>
+<tr><td>Técnicos</td><td>Dirección IP y metadatos de conexión, que envía cualquier conexión a internet</td><td>Sistemas de nuestros proveedores</td></tr>
+<tr><td>Tokyn</td><td>Mensajes, conversaciones, archivos compartidos</td><td>Aprena (ver sección 06)</td></tr>
+</tbody></table></div>
+<p>Solo recopilamos lo que cada función necesita. En nuestros juegos no pedimos tu nombre real, correo, ubicación ni datos de pago.</p>
+</section>
+
+<section id="es-use"><h2><span class="n">04</span>Para qué usamos los datos</h2>
+<div class="tbl"><table>
+<thead><tr><th>Finalidad</th><th>Base jurídica (RGPD)</th></tr></thead>
+<tbody>
+<tr><td>Inicio de sesión, juego en línea, guardar y restaurar progreso, cosméticos, moneda, amigos, clasificaciones</td><td>Ejecución de un contrato</td></tr>
+<tr><td>Moderación, denuncias, sanciones, prevención de trampas y fraude</td><td>Interés legítimo</td></tr>
+<tr><td>Analítica para corregir errores y mejorar los juegos</td><td>Interés legítimo</td></tr>
+<tr><td>Tokyn: responder a tus solicitudes</td><td>Ejecución de un contrato</td></tr>
+<tr><td>Tokyn: entrenar nuestros modelos con tus conversaciones</td><td>Consentimiento. Está desactivado por defecto y puedes retirarlo cuando quieras.</td></tr>
+<tr><td>Cumplir obligaciones legales</td><td>Obligación legal</td></tr>
+</tbody></table></div>
+<p><b>No vendemos datos personales</b> ni los usamos para publicidad.</p>
+</section>
+
+<section id="es-games"><h2><span class="n">05</span>Datos de juego en detalle</h2>
+<h3>Qué ven otros jugadores</h3>
+<p>Otros jugadores ven tu nombre visible, tu aspecto (color y cosméticos) y tu presencia en una sala. Las clasificaciones muestran tu nombre y puntuación. Los datos que marques como públicos pueden leerlos otros jugadores.</p>
+<h3>Conexiones entre pares</h3>
+<p>Las partidas multijugador funcionan con Epic Online Services. Cuando es posible, los jugadores se conectan directamente, por lo que los dispositivos de otros jugadores pueden ver tu dirección IP. Si no es posible, el tráfico pasa por servidores de retransmisión de Epic.</p>
+<h3>Chat de voz</h3>
+<p>Si un juego ofrece chat de voz, usa tu micrófono solo con tu permiso. Tu voz se envía en directo a los demás jugadores de tu sesión. Puedes retirar el permiso en los ajustes del dispositivo.</p>
+<h3>Moderación y sanciones</h3>
+<p>Las denuncias llegan a nuestro panel de moderación. Los moderadores pueden aplicar sanciones, también temporales, y ajustar moneda o cosméticos, por ejemplo para corregir errores o retirar objetos obtenidos mediante exploits. También consultamos el sistema de sanciones de Epic.</p>
+</section>
+
+<section id="es-tokyn"><h2><span class="n">06</span>Tokyn</h2>
+<p><b>Estado:</b> Tokyn está en desarrollo y aún no está disponible al público. Esta sección describe cómo tratará los datos en su lanzamiento. Actualizaremos esta política antes de cualquier lanzamiento público.</p>
+<h3>Qué trata Tokyn</h3>
+<p>Según las funciones disponibles, tus mensajes, tu historial de conversaciones y los archivos que compartas. Te pedimos que no compartas información personal sensible innecesaria.</p>
+<h3>El entrenamiento está desactivado por defecto</h3>
+<p>Las cuentas nuevas no participan. Tus conversaciones solo se usan para entrenar o mejorar nuestros modelos si lo activas, y puedes desactivarlo cuando quieras. Desactivarlo detiene el uso futuro, pero no deshace el entrenamiento ya realizado.</p>
+<h3>Conservación y revisión humana</h3>
+<ul>
+<li>Tu historial se conserva en tu cuenta hasta que lo elimines.</li>
+<li>Si aceptaste el entrenamiento, los datos usados para ello se guardan hasta 7 días.</li>
+<li>Si nuestro equipo necesita revisar una conversación (por seguridad o calidad), los datos revisados se guardan hasta 1 día.</li>
+</ul>
+</section>
+
+<section id="es-meta"><h2><span class="n">07</span>Meta Quest y datos del dispositivo</h2>
+<p>En Meta Quest, el juego usa el Meta Platform SDK para:</p>
+<ul>
+<li>comprobar que tu cuenta posee el juego;</li>
+<li>obtener tu ID de usuario de Meta y un token de verificación de un solo uso, que se envían a Epic Online Services para iniciar sesión;</li>
+<li>usar tu nombre de usuario de Meta como nombre visible por defecto. Puedes cambiarlo en el juego.</li>
+</ul>
+<p>No solicitamos otros datos de tu cuenta de Meta, como amigos, correo o ubicación. En PC, Epic crea un acceso vinculado al dispositivo para jugar sin cuenta. Epic gestiona esa credencial. Consulta la <a href="https://www.meta.com/legal/quest/privacy-policy/" rel="noopener">política de privacidad de Meta</a>.</p>
+</section>
+
+<section id="es-providers"><h2><span class="n">08</span>Proveedores de servicios</h2>
+<div class="tbl"><table>
+<thead><tr><th>Proveedor</th><th>Función</th><th>Ubicación</th></tr></thead>
+<tbody>
+<tr><td>Supabase</td><td>Base de datos y backend de cuentas, progreso, moneda, cosméticos, amigos, estadísticas, denuncias y analítica</td><td>Alemania (UE)</td></tr>
+<tr><td>Epic Online Services</td><td>Inicio de sesión, salas y conexiones multijugador, sanciones, copias cifradas en la nube</td><td>Epic Games, Inc. (EE. UU.)</td></tr>
+<tr><td>Meta Platforms</td><td>Inicio de sesión y verificación de propiedad en Quest</td><td>Meta Platforms (EE. UU./Irlanda)</td></tr>
+</tbody></table></div>
+<p>Algunos proveedores están fuera de la UE. Las transferencias se protegen con las garantías que ofrece cada proveedor, como el Marco de Privacidad de Datos UE-EE. UU. o las Cláusulas Contractuales Tipo.</p>
+</section>
+
+<section id="es-local"><h2><span class="n">09</span>Datos guardados en tu dispositivo</h2>
+<p>Los juegos guardan algunos datos localmente (Unity PlayerPrefs) para arrancar rápido y funcionar sin conexión: nombre visible, color, modo de juego, saldos y cosméticos en caché, objetos equipados, rol y estado de sanción. Desinstalar el juego o borrar sus datos elimina la copia local, pero no tu cuenta en línea.</p>
+</section>
+
+<section id="es-retention"><h2><span class="n">10</span>Cuánto tiempo guardamos los datos</h2>
+<div class="tbl"><table>
+<thead><tr><th>Datos</th><th>Plazo</th></tr></thead>
+<tbody>
+<tr><td>ID de jugador, nombre visible</td><td>Mientras exista tu cuenta</td></tr>
+<tr><td>Moneda, cosméticos, estadísticas, amigos</td><td>Mientras exista tu cuenta</td></tr>
+<tr><td>Copias en la nube</td><td>Hasta que se elimine tu cuenta</td></tr>
+<tr><td>Eventos de analítica</td><td>1 mes</td></tr>
+<tr><td>Denuncias</td><td>5 meses</td></tr>
+<tr><td>Conversaciones de Tokyn</td><td>Hasta que las elimines (ver sección 06)</td></tr>
+</tbody></table></div>
+<p>Solo conservamos datos más tiempo si la ley lo exige.</p>
+</section>
+
+<section id="es-security"><h2><span class="n">11</span>Seguridad</h2>
+<ul>
+<li>Las conexiones con nuestro backend usan cifrado HTTPS.</li>
+<li>Epic Online Services cifra el tráfico multijugador.</li>
+<li>Las copias en la nube de Epic se cifran con una clave de 256 bits.</li>
+<li>Las compras y los cambios de moneda se validan en el servidor.</li>
+<li>Las claves privilegiadas del servidor nunca se incluyen en las versiones para jugadores.</li>
+</ul>
+<p>Ningún sistema es totalmente seguro. Si una brecha afecta a tus datos, te informaremos a ti y a las autoridades según exija la ley.</p>
+</section>
+
+<section id="es-rights"><h2><span class="n">12</span>Tus derechos</h2>
+<p>Tienes derecho a acceder a tus datos y obtener una copia, rectificarlos, suprimirlos junto con tu cuenta, limitar u oponerte al tratamiento basado en interés legítimo, a la portabilidad y a retirar tu consentimiento en cualquier momento.</p>
+<p>Escribe a <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a>, a ser posible con tu ID de jugador. Responderemos en un plazo de un mes. También puedes presentar una reclamación ante tu autoridad de protección de datos.</p>
+</section>
+
+<section id="es-children"><h2><span class="n">13</span>Menores</h2>
+<p>Nuestros juegos son para mayores de 13 años y Tokyn para mayores de 16. Algunos productos pueden exigir más edad. No recopilamos datos de menores de esas edades a sabiendas. Si crees que un menor nos ha dado datos, contáctanos y los eliminaremos.</p>
+</section>
+
+<section id="es-changes"><h2><span class="n">14</span>Cambios</h2>
+<p>Si cambiamos esta política, actualizaremos la fecha de arriba. Los cambios importantes también se anunciarán en el juego o producto afectado.</p>
+</section>
+
+<section id="es-contact"><h2><span class="n">15</span>Contacto</h2>
+<p><a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a></p>
+<p class="note">Las traducciones se ofrecen por comodidad. En caso de discrepancia, prevalece la versión en inglés.</p>
+</section>
+</div>
+
+<!-- =============================== FRANÇAIS =============================== -->
+<div class="lang" data-lang="fr" lang="fr">
+
+<div class="glance">
+  <h2>En bref</h2>
+  <ul>
+    <li><b>Nous collectons des données.</b> Nos jeux ont besoin d'un identifiant joueur, d'un pseudo et de ta progression pour fonctionner en ligne.</li>
+    <li><b>Nous ne vendons jamais de données personnelles.</b></li>
+    <li><b>Nous utilisons peu de prestataires :</b> Supabase (serveurs en Allemagne), Epic Online Services et, sur Quest, Meta.</li>
+    <li><b>Tokyn ne s'entraîne pas sur tes conversations,</b> sauf si tu l'actives toi-même.</li>
+    <li><b>Tu peux nous demander</b> à tout moment de consulter, corriger ou supprimer tes données.</li>
+  </ul>
+</div>
+
+<section id="fr-who"><h2><span class="n">01</span>Qui sommes-nous</h2>
+<p>Aprena développe des jeux vidéo et Tokyn, un assistant IA. Dans cette politique, « Aprena » et « nous » désignent l'entreprise responsable de ces produits. Nous sommes responsables du traitement des données décrites ici.</p>
+<p>Contact : <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a></p>
+<div class="confirm">Add legal name and postal address (GDPR Art. 13).</div>
+</section>
+
+<section id="fr-scope"><h2><span class="n">02</span>Champ d'application</h2>
+<p>Cette politique s'applique aux jeux publiés par Aprena et à Tokyn. Un jeu peut avoir sa propre courte notice de confidentialité avec des précisions supplémentaires. Cette notice complète la présente politique sans la remplacer. Des plateformes comme Meta Horizon et Epic Games ont leurs propres politiques pour les données qu'elles traitent elles-mêmes.</p>
+</section>
+
+<section id="fr-data"><h2><span class="n">03</span>Données traitées</h2>
+<div class="tbl"><table>
+<thead><tr><th>Type</th><th>Exemples</th><th>Stockage</th></tr></thead>
+<tbody>
+<tr><td>Identifiants de connexion</td><td>ID utilisateur Epic Online Services ; ID utilisateur Meta sur Quest ; une connexion liée à l'appareil créée par Epic sur PC</td><td>Epic ; Meta ; notre backend (ID joueur)</td></tr>
+<tr><td>Compte et jeu</td><td>Pseudo, rôle (joueur/modérateur/admin), soldes et mouvements de monnaie virtuelle, cosmétiques possédés et équipés, statistiques et classements, paramètres enregistrés sur ton compte</td><td>Notre backend (Supabase)</td></tr>
+<tr><td>Social</td><td>Listes et demandes d'amis, si un ami était récemment en ligne</td><td>Notre backend (Supabase)</td></tr>
+<tr><td>Modération</td><td>Signalements envoyés par toi ou te concernant (ID, motif, détails saisis), statut, motif et durée des bannissements</td><td>Notre backend (Supabase) ; Epic (sanctions)</td></tr>
+<tr><td>Statistiques d'usage</td><td>Événements de jeu, p. ex. « manche terminée » avec la carte et la durée</td><td>Notre backend (Supabase)</td></tr>
+<tr><td>Sauvegardes</td><td>Copie des soldes, cosmétiques, objets équipés et date de sauvegarde</td><td>Stockage cloud d'Epic (chiffré)</td></tr>
+<tr><td>Sur ton appareil</td><td>Copies en cache des éléments ci-dessus et paramètres locaux</td><td>Ton appareil uniquement (voir section 09)</td></tr>
+<tr><td>Techniques</td><td>Adresse IP et métadonnées de connexion, transmises par toute connexion internet</td><td>Systèmes de nos prestataires</td></tr>
+<tr><td>Tokyn</td><td>Messages, conversations, fichiers partagés</td><td>Aprena (voir section 06)</td></tr>
+</tbody></table></div>
+<p>Nous ne collectons que ce dont chaque fonction a besoin. Nos jeux ne demandent ni ton vrai nom, ni ton e-mail, ni ta localisation, ni tes données de paiement.</p>
+</section>
+
+<section id="fr-use"><h2><span class="n">04</span>Finalités et bases légales</h2>
+<div class="tbl"><table>
+<thead><tr><th>Finalité</th><th>Base légale (RGPD)</th></tr></thead>
+<tbody>
+<tr><td>Connexion, jeu en ligne, sauvegarde et restauration de la progression, cosmétiques, monnaie, amis, classements</td><td>Exécution d'un contrat</td></tr>
+<tr><td>Modération, signalements, bannissements, lutte contre la triche et la fraude</td><td>Intérêt légitime</td></tr>
+<tr><td>Statistiques d'usage pour corriger et améliorer nos jeux</td><td>Intérêt légitime</td></tr>
+<tr><td>Tokyn : répondre à tes demandes</td><td>Exécution d'un contrat</td></tr>
+<tr><td>Tokyn : entraîner nos modèles sur tes conversations</td><td>Consentement. Désactivé par défaut et révocable à tout moment.</td></tr>
+<tr><td>Obligations légales</td><td>Obligation légale</td></tr>
+</tbody></table></div>
+<p><b>Nous ne vendons pas de données personnelles</b> et ne les utilisons pas à des fins publicitaires.</p>
+</section>
+
+<section id="fr-games"><h2><span class="n">05</span>Données de jeu en détail</h2>
+<h3>Ce que voient les autres joueurs</h3>
+<p>Les autres joueurs voient ton pseudo, ton apparence (couleur et cosmétiques) et ta présence dans un salon. Les classements affichent ton pseudo et ton score. Les données marquées comme publiques sont lisibles par les autres joueurs.</p>
+<h3>Connexions pair-à-pair</h3>
+<p>Les parties multijoueurs passent par Epic Online Services. Quand c'est possible, les joueurs se connectent directement entre eux, et les appareils des autres joueurs peuvent alors voir ton adresse IP. Sinon, le trafic passe par les serveurs relais d'Epic.</p>
+<h3>Chat vocal</h3>
+<p>Si un jeu propose un chat vocal, il utilise ton micro uniquement avec ton autorisation. Ta voix est transmise en direct aux autres joueurs de ta session. Tu peux retirer l'autorisation dans les réglages de l'appareil.</p>
+<h3>Modération et bannissements</h3>
+<p>Les signalements arrivent sur notre tableau de modération. Les modérateurs peuvent appliquer des bannissements, y compris temporaires. Ils peuvent aussi ajuster la monnaie ou les cosmétiques, par exemple pour corriger une erreur ou retirer des objets obtenus via un exploit. Nous consultons aussi le système de sanctions d'Epic.</p>
+</section>
+
+<section id="fr-tokyn"><h2><span class="n">06</span>Tokyn</h2>
+<p><b>Statut :</b> Tokyn est en développement et n'est pas encore accessible au public. Cette section décrit le traitement des données prévu au lancement. Nous mettrons cette politique à jour avant toute sortie publique.</p>
+<h3>Ce que Tokyn traite</h3>
+<p>Selon les fonctions disponibles : tes messages, ton historique de conversations et les fichiers que tu partages. Évite de partager des informations personnelles sensibles inutiles.</p>
+<h3>L'entraînement est désactivé par défaut</h3>
+<p>Les nouveaux comptes ne participent pas. Tes conversations ne servent à entraîner ou améliorer nos modèles que si tu l'actives, et tu peux le désactiver à tout moment. La désactivation arrête l'utilisation future, mais n'annule pas l'entraînement déjà effectué.</p>
+<h3>Conservation et relecture humaine</h3>
+<ul>
+<li>Ton historique reste sur ton compte jusqu'à ce que tu le supprimes.</li>
+<li>Si tu as accepté l'entraînement, les données utilisées sont conservées jusqu'à 7 jours.</li>
+<li>Si notre équipe doit relire une conversation (sécurité ou qualité), les données relues sont conservées jusqu'à 1 jour.</li>
+</ul>
+</section>
+
+<section id="fr-meta"><h2><span class="n">07</span>Meta Quest et données de l'appareil</h2>
+<p>Sur Meta Quest, le jeu utilise le Meta Platform SDK pour :</p>
+<ul>
+<li>vérifier que ton compte possède le jeu ;</li>
+<li>obtenir ton ID utilisateur Meta et un jeton de preuve à usage unique, transmis à Epic Online Services pour te connecter ;</li>
+<li>utiliser ton nom d'utilisateur Meta comme pseudo par défaut. Tu peux le modifier en jeu.</li>
+</ul>
+<p>Nous ne demandons pas d'autres données de ton compte Meta (amis, e-mail, localisation). Sur PC, Epic crée une connexion liée à l'appareil pour jouer sans compte, et c'est Epic qui la gère. Voir la <a href="https://www.meta.com/legal/quest/privacy-policy/" rel="noopener">politique de confidentialité de Meta</a>.</p>
+</section>
+
+<section id="fr-providers"><h2><span class="n">08</span>Prestataires</h2>
+<div class="tbl"><table>
+<thead><tr><th>Prestataire</th><th>Rôle</th><th>Localisation</th></tr></thead>
+<tbody>
+<tr><td>Supabase</td><td>Base de données et backend pour les comptes, la progression, la monnaie, les cosmétiques, les amis, les statistiques, les signalements et les statistiques d'usage</td><td>Allemagne (UE)</td></tr>
+<tr><td>Epic Online Services</td><td>Connexion, salons et connexions multijoueurs, sanctions, sauvegardes cloud chiffrées</td><td>Epic Games, Inc. (États-Unis)</td></tr>
+<tr><td>Meta Platforms</td><td>Connexion et vérification de propriété sur Quest</td><td>Meta Platforms (États-Unis/Irlande)</td></tr>
+</tbody></table></div>
+<p>Certains prestataires sont situés hors de l'UE. Les transferts sont encadrés par les garanties du prestataire, comme le cadre de protection des données UE–États-Unis ou les clauses contractuelles types.</p>
+</section>
+
+<section id="fr-local"><h2><span class="n">09</span>Données stockées sur ton appareil</h2>
+<p>Les jeux stockent certaines données localement (Unity PlayerPrefs) pour démarrer vite et fonctionner hors ligne : pseudo, couleur, mode de jeu, soldes et cosmétiques en cache, objets équipés, rôle et statut de bannissement. Désinstaller le jeu ou effacer ses données supprime la copie locale, mais pas ton compte en ligne.</p>
+</section>
+
+<section id="fr-retention"><h2><span class="n">10</span>Durée de conservation</h2>
+<div class="tbl"><table>
+<thead><tr><th>Données</th><th>Durée</th></tr></thead>
+<tbody>
+<tr><td>ID joueur, pseudo</td><td>Tant que ton compte existe</td></tr>
+<tr><td>Monnaie, cosmétiques, statistiques, amis</td><td>Tant que ton compte existe</td></tr>
+<tr><td>Sauvegardes cloud</td><td>Jusqu'à la suppression du compte</td></tr>
+<tr><td>Événements de statistiques d'usage</td><td>1 mois</td></tr>
+<tr><td>Signalements</td><td>5 mois</td></tr>
+<tr><td>Conversations Tokyn</td><td>Jusqu'à ce que tu les supprimes (voir section 06)</td></tr>
+</tbody></table></div>
+<p>Nous ne conservons les données plus longtemps que si la loi l'exige.</p>
+</section>
+
+<section id="fr-security"><h2><span class="n">11</span>Sécurité</h2>
+<ul>
+<li>Les connexions à notre backend sont chiffrées en HTTPS.</li>
+<li>Le trafic multijoueur est chiffré par Epic Online Services.</li>
+<li>Les sauvegardes cloud chez Epic sont chiffrées avec une clé de 256 bits.</li>
+<li>Les achats et mouvements de monnaie sont validés côté serveur.</li>
+<li>Les clés serveur privilégiées ne sont jamais incluses dans les versions joueurs.</li>
+</ul>
+<p>Aucun système n'est parfaitement sûr. En cas de violation touchant tes données, nous t'informerons, ainsi que les autorités, comme la loi l'exige.</p>
+</section>
+
+<section id="fr-rights"><h2><span class="n">12</span>Tes droits</h2>
+<p>Tu as le droit d'accéder à tes données et d'en obtenir une copie, de les rectifier, de les effacer avec ton compte, de limiter le traitement fondé sur l'intérêt légitime ou de t'y opposer, à la portabilité, et de retirer ton consentement à tout moment.</p>
+<p>Écris à <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a>, si possible avec ton ID joueur. Nous répondons sous un mois. Tu peux aussi introduire une réclamation auprès de ton autorité de protection des données (en France : la CNIL).</p>
+</section>
+
+<section id="fr-children"><h2><span class="n">13</span>Enfants</h2>
+<p>Nos jeux sont destinés aux joueurs de 13 ans et plus, Tokyn aux utilisateurs de 16 ans et plus. Certains produits peuvent exiger un âge plus élevé. Nous ne collectons pas sciemment de données d'enfants plus jeunes. Si tu penses qu'un enfant nous a transmis des données, contacte-nous et nous les supprimerons.</p>
+</section>
+
+<section id="fr-changes"><h2><span class="n">14</span>Modifications</h2>
+<p>En cas de modification, nous mettrons à jour la date en haut de page. Les changements importants seront aussi annoncés dans le jeu ou produit concerné.</p>
+</section>
+
+<section id="fr-contact"><h2><span class="n">15</span>Contact</h2>
+<p><a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a></p>
+<p class="note">Les traductions sont fournies pour faciliter la compréhension. En cas de divergence, la version anglaise prévaut.</p>
+</section>
+</div>
+
+  </article>
+</div>
+
+<footer>
+  <span><img src="logo.png" alt="">© 2026 Aprena</span>
+  <a href="mailto:averisaicompany@gmail.com">averisaicompany@gmail.com</a>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var UI = {
+    en:{kicker:'Legal',title:'Privacy Policy',meta:'Last updated 26 September 2026 · Applies to Aprena games and Tokyn',contents:'Contents'},
+    de:{kicker:'Rechtliches',title:'Datenschutzerklärung',meta:'Zuletzt aktualisiert am 26. September 2026 · Gilt für Aprena-Spiele und Tokyn',contents:'Inhalt'},
+    es:{kicker:'Legal',title:'Política de privacidad',meta:'Última actualización: 26 de septiembre de 2026 · Aplica a los juegos de Aprena y a Tokyn',contents:'Índice'},
+    fr:{kicker:'Mentions légales',title:'Politique de confidentialité',meta:'Dernière mise à jour : 26 septembre 2026 · S’applique aux jeux Aprena et à Tokyn',contents:'Sommaire'}
+  };
+  var toc = document.getElementById('toc'), observer;
+
+  function pick(){
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q && UI[q]) return q;
+    try { var s = localStorage.getItem('aprena-lang'); if (s && UI[s]) return s; } catch(e){}
+    var n = (navigator.language||'en').slice(0,2).toLowerCase();
+    return UI[n] ? n : 'en';
+  }
+
+  function set(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang').forEach(function(el){ el.classList.toggle('active', el.dataset.lang === lang); });
+    document.querySelectorAll('.langs button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.set === lang); });
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ el.textContent = UI[lang][el.dataset.i18n]; });
+    document.title = UI[lang].title + ' — Aprena';
+    try { localStorage.setItem('aprena-lang', lang); } catch(e){}
+    var url = new URL(location.href); url.searchParams.set('lang', lang); history.replaceState(null,'',url);
+    buildToc(lang);
+  }
+
+  function buildToc(lang){
+    toc.innerHTML = '';
+    if (observer) observer.disconnect();
+    var secs = document.querySelectorAll('.lang[data-lang="'+lang+'"] section');
+    secs.forEach(function(s){
+      var h = s.querySelector('h2'), n = h.querySelector('.n').textContent;
+      var label = h.textContent.replace(n,'').trim();
+      var li = document.createElement('li');
+      li.innerHTML = '<a href="#'+s.id+'"><span>'+n+'</span>'+label+'</a>';
+      toc.appendChild(li);
+    });
+    if (!('IntersectionObserver' in window)) return;
+    observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        toc.querySelectorAll('a').forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#'+e.target.id); });
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    secs.forEach(function(s){ observer.observe(s); });
+  }
+
+  document.querySelectorAll('.langs button').forEach(function(b){
+    b.addEventListener('click', function(){ set(b.dataset.set); });
+  });
+  set(pick());
+})();
+</script>
+</body>
+</html>
